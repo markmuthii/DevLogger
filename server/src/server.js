@@ -12,6 +12,8 @@ const app = express();
 
 connectDB();
 
+app.use(express.json());
+
 app.get("/", getHome);
 
 app.use("/students", studentsRouter);
