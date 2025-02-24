@@ -6,8 +6,11 @@ import { studentsRouter } from "./routes/students.js";
 import { devicesRouter } from "./routes/devices.js";
 import { logsRouter } from "./routes/logs.js";
 import { usersRouter } from "./routes/users.js";
+import { connectDB } from "./db/config.js";
 
 const app = express();
+
+connectDB();
 
 app.get("/", getHome);
 
