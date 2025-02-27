@@ -26,10 +26,19 @@ export const createStudents = async (req, res) => {
   }
 };
 
-export const getStudents = (req, res) => {
-  res.json({
-    message: "GET /students",
-  });
+export const getStudents = async (req, res) => {
+  try {
+    const students = await Student.find();
+
+    res.json({
+      success: true,
+      data: students,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
 };
 
 export const updateStudent = (req, res) => {

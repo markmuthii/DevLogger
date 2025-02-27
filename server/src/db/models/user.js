@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 
-const studentSchema = new Schema(
+const usersSchema = new Schema(
   {
     name: {
       type: String,
@@ -14,16 +14,20 @@ const studentSchema = new Schema(
       type: String, // 0712834944, +254783489325
       required: true,
     },
+    username: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const Student = model("student", studentSchema);
+const User = model("user", usersSchema);
 
-// Student.prototype.customMethod = async function () {
-//   return "This is a custom method";
-// };
-
-export { Student };
+export { User };
