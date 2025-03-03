@@ -1,5 +1,4 @@
 import { Device } from "../db/models/device.js";
-import { Student } from "../db/models/student.js";
 
 export const createDevices = async (req, res) => {
   // Get the data from the request
@@ -36,16 +35,6 @@ export const createDevices = async (req, res) => {
 export const getDevices = async (req, res) => {
   try {
     let devices = await Device.find().populate("student", ["name"]);
-
-    // devices.forEach((device, i) => {
-    //   Student.findById(device.student)
-    //     .then((student) => {
-    //       device.student = student;
-
-    //       devices[i].student = student;
-    //     })
-    //     .catch();
-    // });
 
     res.json({
       success: true,
