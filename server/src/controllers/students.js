@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { Student } from "../db/models/student.js";
 
 export const createStudents = async (req, res) => {
@@ -41,14 +42,84 @@ export const getStudents = async (req, res) => {
   }
 };
 
-export const updateStudent = (req, res) => {
-  res.json({
-    message: "PUT /students",
-  });
+export const getSingleStudent = async (req, res) => {
+  try {
+    // Get the studentID from the request parameters
+    const { studentID } = req.params;
+
+    if (!ObjectId.isValid(studentID)) throw new Error("Invalid ID");
+
+    // If data is valid, update it in the database
+    const student = await Student.findById(studentID);
+
+    // - Respond to the client with a success code and the data
+    res.json({
+      success: true,
+      data: student,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
 };
 
-export const deleteStudents = (req, res) => {
-  res.json({
-    message: "DELETE /students",
-  });
+export const updateStudent = async (req, res) => {
+  try {
+    // Get the studentID from the request parameters
+    const { studentID } = req.params;
+
+    if (!ObjectId.isValid(studentID)) throw new Error("Invalid ID");
+
+    // Get the data from the request
+    const { name, email, phone } = req.body;
+
+    // Validate that data
+    if (!name || !email || !phone) {
+      // If data is not valid, respond to the client with an error code and message
+      throw new Error("All fields are required");
+    }
+
+    // If data is valid, update it in the database
+    const updatedStudent = await Student.findByIdAndUpdate(
+      studentID,
+      {
+        name,
+        email,
+        phone,
+      },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedStudent) throw new Error("Student with that ID does not exist");
+
+    // - Respond to the client with a success code and the data
+    res.json({
+      success: true,
+      data: updatedStudent,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
+export const deleteStudents = async (req, res) => {
+  try {
+    // Get the studentID from the request parameters
+    const { studentID } = req.params;
+
+    if (!ObjectId.isValid(studentID)) throw new Error("Invalid ID");
+
+    // If data is valid, update it in the database
+    await Student.findByIdAndDelete(studentID);
+
+    // - Respond to the client with a success code and the data
+    res.status(204).json();
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
 };
