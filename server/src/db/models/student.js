@@ -20,10 +20,15 @@ const studentSchema = new Schema(
   }
 );
 
-const Student = model("student", studentSchema);
+studentSchema.virtual("devices", {
+  ref: "device",
+  localField: "_id", // primary key of current schema
+  foreignField: "student", // foreign key in the referenced schema
+});
 
-// Student.prototype.customMethod = async function () {
-//   return "This is a custom method";
-// };
+studentSchema.set("toJSON", { virtuals: true });
+studentSchema.set("toObject", { virtuals: true });
+
+const Student = model("student", studentSchema);
 
 export { Student };

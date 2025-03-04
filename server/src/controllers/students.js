@@ -29,7 +29,10 @@ export const createStudents = async (req, res) => {
 
 export const getStudents = async (req, res) => {
   try {
-    const students = await Student.find();
+    const students = await Student.find().populate("devices", [
+      "model",
+      "serialNumber",
+    ]);
 
     res.json({
       success: true,
@@ -50,7 +53,10 @@ export const getSingleStudent = async (req, res) => {
     if (!ObjectId.isValid(studentID)) throw new Error("Invalid ID");
 
     // If data is valid, update it in the database
-    const student = await Student.findById(studentID);
+    const student = await Student.findById(studentID).populate("devices", [
+      "model",
+      "serialNumber",
+    ]);
 
     // - Respond to the client with a success code and the data
     res.json({
