@@ -28,6 +28,15 @@ const usersSchema = new Schema(
   }
 );
 
+usersSchema.virtual("logs", {
+  ref: "log",
+  localField: "_id", // primary key of current schema
+  foreignField: "user", // foreign key in the referenced schema
+});
+
+usersSchema.set("toJSON", { virtuals: true });
+usersSchema.set("toObject", { virtuals: true });
+
 const User = model("user", usersSchema);
 
 export { User };

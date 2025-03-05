@@ -23,8 +23,14 @@ export const createLogs = async (req, res) => {
 };
 
 export const getLogs = async (req, res) => {
+  const { status } = req.query;
+
   try {
-    const logs = await Log.find().populate("user", ["name"]).populate("device");
+    const logs = await Log.find({
+      status,
+    })
+      .populate("user", ["name"])
+      .populate("device", ["model", "student"]);
 
     res.json({
       success: true,
@@ -38,10 +44,21 @@ export const getLogs = async (req, res) => {
   }
 };
 
-export const updateLog = (req, res) => {
-  res.json({
-    message: "PUT /logs",
-  });
+export const updateLog = async (req, res) => {
+  const { logID } = req.params;
+
+  try {
+    await Log.findByIdAndUpdate(logID, { status: "inactive" });
+
+    res.json({
+      message: "Log updated successfully",
+    });
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
 };
 
 export const deleteLogs = (req, res) => {

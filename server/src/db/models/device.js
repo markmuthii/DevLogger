@@ -30,6 +30,15 @@ const deviceSchema = new Schema(
   }
 );
 
+deviceSchema.virtual("logs", {
+  ref: "log",
+  localField: "_id", // primary key of current schema
+  foreignField: "device", // foreign key in the referenced schema
+});
+
+deviceSchema.set("toJSON", { virtuals: true });
+deviceSchema.set("toObject", { virtuals: true });
+
 const Device = model("device", deviceSchema);
 
 // There might be some logic

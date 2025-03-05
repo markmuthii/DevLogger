@@ -8,11 +8,8 @@ import {
 
 const logsRouter = Router();
 
-logsRouter
-  .route("/")
-  .post(createLogs)
-  .get(getLogs)
-  .put(updateLog)
-  .delete(deleteLogs);
+logsRouter.route("/").post(createLogs).get(getLogs);
+
+logsRouter.route("/:logID").put(updateLog).delete(deleteLogs);
 
 export { logsRouter };
