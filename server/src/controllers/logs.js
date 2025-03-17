@@ -3,6 +3,8 @@ import { Log } from "../db/models/log.js";
 export const createLogs = async (req, res) => {
   const logs = req.body;
 
+  const loggedInUserId = req.user._id;
+
   try {
     // if (!user || !device) {
     //   throw new Error("All fields are required");

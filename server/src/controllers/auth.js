@@ -83,3 +83,14 @@ export const loginUser = async (req, res) => {
     });
   }
 };
+
+export const logoutUser = (req, res) => {
+  res.cookie("devlogger_auth", "", {
+    maxAge: 0,
+  });
+
+  // Or this
+  // res.clearCookie("devlogger_auth");
+
+  res.status(204).json({});
+};

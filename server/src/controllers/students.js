@@ -28,6 +28,10 @@ export const createStudents = async (req, res) => {
 };
 
 export const getStudents = async (req, res) => {
+  const loggedInUser = req.user.name;
+
+  console.log({ loggedInUser });
+
   try {
     const students = await Student.find().populate("devices", [
       "model",
