@@ -1,5 +1,5 @@
-import { Link } from "react-router";
 import { AuthForm } from "../components/AuthForm";
+import { Button } from "../components/Button";
 
 const LoginPage = () => {
   return (
@@ -19,9 +19,7 @@ const LoginPage = () => {
           required
         />
 
-        <button className="bg-blue-500 text-white p-2 rounded" type="submit">
-          Login
-        </button>
+        <Button type={"submit"}>Login</Button>
       </AuthForm>
     </>
   );
