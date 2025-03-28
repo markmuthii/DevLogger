@@ -6,7 +6,7 @@ const RegisterPage = () => {
   return (
     <>
       <AuthForm title={"Register"}>
-        <Input type="text" placeholder="Name" required />
+        <Input type="text" placeholder="Name" required autoFocus />
 
         <Input type="email" placeholder="Email" required />
 

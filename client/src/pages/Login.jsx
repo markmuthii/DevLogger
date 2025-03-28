@@ -6,7 +6,7 @@ const LoginPage = () => {
   return (
     <>
       <AuthForm title={"Login"}>
-        <Input type="text" placeholder="Username" required />
+        <Input type="text" placeholder="Username" required autoFocus />
 
         <Input type="password" placeholder="Password" required />
 
