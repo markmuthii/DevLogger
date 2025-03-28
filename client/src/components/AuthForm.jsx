@@ -4,7 +4,7 @@ const AuthForm = ({ children, title }) => {
   return (
     <>
       <h1 className="text-3xl font-bold mb-8 uppercase">{title}</h1>
-      <div className="shadow-2xl border border-gray-200 rounded-lg w-[90%] max-w-[500px] p-10 text-center space-y-8 pt-10">
+      <div className="shadow-2xl border border-gray-200 rounded-lg w-[90%] max-w-[500px] p-6 sm:p-10 text-center space-y-8 pt-10">
         <p className="text-gray-500">
           Please enter your {title === "Login" && "login"} details
           {title === "Register" && " to create an account"}.
