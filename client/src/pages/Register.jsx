@@ -1,44 +1,24 @@
 import { AuthForm } from "../components/AuthForm";
 import { Button } from "../components/Button";
+import { Input } from "../components/Input";
 
 const RegisterPage = () => {
   return (
     <>
       <AuthForm title={"Register"}>
-        <input
-          type="text"
-          placeholder="Name"
-          className="border border-gray-300 p-2 rounded"
-          required
-        />
+        <Input type="text" placeholder="Name" required />
 
-        <input
-          type="email"
-          placeholder="Email"
-          className="border border-gray-300 p-2 rounded"
-          required
-        />
+        <Input type="email" placeholder="Email" required />
 
-        <input
-          type="text"
-          placeholder="Phone Number"
-          className="border border-gray-300 p-2 rounded"
-          required
-        />
+        <Input type="text" placeholder="Phone Number" required />
 
-        <input
-          type="text"
-          placeholder="Username"
-          className="border border-gray-300 p-2 rounded"
-          required
-        />
+        <Input type="text" placeholder="Username" required />
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="border border-gray-300 p-2 rounded"
-          required
-        />
+        <div className="flex gap-1 sm:gap-2">
+          <Input type="password" placeholder="Password" required />
+
+          <Input type="password" placeholder="Confirm Password" required />
+        </div>
 
         <Button type={"submit"}>Register</Button>
       </AuthForm>
