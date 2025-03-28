@@ -7,7 +7,9 @@ const AuthLayout = () => {
       <AuthNav />
 
       {/* This is where the contents of the components that have been nested inside the AuthLayout will be output */}
-      <Outlet />
+      <main className="flex flex-col items-center justify-center h-screen bg-gray-100">
+        <Outlet />
+      </main>
     </>
   );
 };
