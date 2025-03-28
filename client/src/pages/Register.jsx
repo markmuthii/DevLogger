@@ -14,7 +14,7 @@ const RegisterPage = () => {
 
         <Input type="text" placeholder="Username" required />
 
-        <div className="flex gap-1 sm:gap-2">
+        <div className="flex gap-1 sm:gap-2 [&>input]:w-full">
           <Input type="password" placeholder="Password" required />
 
           <Input type="password" placeholder="Confirm Password" required />
