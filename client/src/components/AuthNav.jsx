@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router";
 
 const AuthNav = () => {
   const activeState = ({ isActive }) => {
-    return isActive && "underline text-black";
+    return isActive ? "underline text-black" : "";
   };
 
   return (
